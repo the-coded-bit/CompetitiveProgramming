@@ -35,6 +35,6 @@ public class floodfill {
         floodfill(maze, sr, sc - 1, asf + "l", visited);
         floodfill(maze, sr + 1, sc, asf + "d", visited);
         floodfill(maze, sr, sc + 1, asf + "r", visited);
-    
+        visited[sr][sc] = false;
     }
 }
