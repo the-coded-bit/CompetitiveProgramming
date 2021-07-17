@@ -1,0 +1,35 @@
+
+import java.util.*;
+
+public class countVariableStairPath {
+
+    public static void main(String[] args) throws Exception {
+        // write your code here
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        for(int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+        sc.close();    
+        CountPaths(n, arr,  0,  "", 0);    
+    }
+    
+    public static void  CountPaths(int n, int[] arr, int init, String psf, int sum) {
+        
+        //base condition
+        if(sum == n){
+            System.out.println(psf);
+            return;
+        }
+        else if(sum > n)
+            return;
+        
+        
+        int var_paths = arr[init];
+        for(int i = 1; i <= var_paths + init; i++) {
+            CountPaths(n, arr, i, psf + i, sum + i);
+        }
+    }
+
+}
