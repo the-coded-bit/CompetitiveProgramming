@@ -25,7 +25,7 @@ int main()
         }
 
         long ans = (maxi * maxi) - (abs(a - row) + abs(b - col));
-        cout << ans;
+        cout << ans << endl;
     }
 
     return 0;
