@@ -56,7 +56,7 @@ public static void main(String[] args) throws Exception {
             st.pop();
         }
         if(st.empty() == true){
-            ans[i] = 0;
+            ans[i] = -1;
         }
         else{
             ans[i] = st.peek();
