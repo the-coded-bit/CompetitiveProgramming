@@ -1,3 +1,5 @@
+import javax.management.modelmbean.ModelMBean;
+
 public class diceThrow {
     public static int countWays(int n, int m, int x, int dice, int ssf){
         //base condition
@@ -23,13 +25,13 @@ public class diceThrow {
             for(int j = 1; j <= target; j++){
                 for(int k = 1; k <= f; k++){
                     if(j >= k){
-                        dp[i][j] += dp[i - 1][j - k] % mod;
+                        dp[i][j] = (dp[i][j] + dp[i - 1][j - k]) % mod;
                     }
                 }
             }
         }
 
-        return dp[d][target];
+        return dp[d][target] % mod;
         
     }
 
