@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 //size of generic tree
-public class size {
+public class BasicOperation {
   private static class Node {
     int data;
     ArrayList<Node> children = new ArrayList<>();
@@ -54,6 +54,17 @@ public class size {
     return ans + 1;
   }
 
+  //return the maximum element in generic tree
+  public static int max(Node node) {
+    // write your code here
+    int maxi = Integer.MIN_VALUE;
+    for(Node iNode : node.children){
+        maxi = Math.max(max(iNode), maxi);
+    }
+    maxi = Math.max(node.data, maxi);
+    return maxi;
+  }
+
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
@@ -66,7 +77,9 @@ public class size {
     Node root = construct(arr);
     int sz = size(root);
     System.out.println(sz);
-    // display(root);
+    int m = max(root);
+    System.out.println(m);
+    display(root);
   }
 
 }
