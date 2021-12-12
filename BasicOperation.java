@@ -175,6 +175,63 @@ public class BasicOperation {
     return false;    
   }
 
+  public static ArrayList<Integer> nodeToRootPath(Node node, int data){
+    // write your code here
+    //base case
+    if(node.data == data){
+        ArrayList<Integer> l = new ArrayList<Integer>();
+        l.add(data);
+        return l;
+    }
+    ArrayList<Integer> ans = new ArrayList<>();
+    
+    for(Node iNode : node.children){
+        ArrayList<Integer> l = nodeToRootPath(iNode, data);
+        if(l.size() != 0){
+            ans = l;
+            ans.add(node.data);
+            return ans;
+        }
+    }
+    return ans;
+ }
+
+ public static int lca(Node node, int d1, int d2) {
+  // write your code here
+  ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+  ArrayList<Integer> p2 = nodeToRootPath(node, d2);
+  
+  int i = p1.size() - 1;
+  int j = p2.size() - 1;
+  while(i >= 0 && j >= 0 && p1.get(i) == p2.get(j)){
+      i--;
+      j--;
+  }
+  i++;
+  j++;
+  return p1.get(i);
+  
+}
+
+public static int distanceBetweenNodes(Node node, int d1, int d2){
+  // write your code here
+  int common = lca(node, d1, d2);
+  ArrayList<Integer> p1 = nodeToRootPath(node, d1);
+  ArrayList<Integer> p2 = nodeToRootPath(node, d2);
+  
+  int i = 0, j = 0;
+  
+  while(p1.get(i) != common && i < p1.size()){
+      i++;
+  }
+  
+  while(p2.get(j) != common && j < p2.size()){
+      j++;
+  }
+  
+  return i + j;
+}
+
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
